@@ -1,0 +1,81 @@
+<!-- nombre: ejemplo-hero-v1 -->
+<!-- cliente: _shared -->
+<!-- creado: 2026-04-13 -->
+<!-- spec: ninguna (ejemplo canónico para referencia de estilo) -->
+<!-- uso: pegar dentro de un widget HTML de Elementor -->
+
+<div class="hl-ejemplo-hero-v1">
+  <div class="hl-ejemplo-hero-v1__inner">
+    <h2 class="hl-ejemplo-hero-v1__title">Título de la sección</h2>
+    <p class="hl-ejemplo-hero-v1__subtitle">Subtítulo descriptivo que explica el valor en una frase.</p>
+    <a class="hl-ejemplo-hero-v1__cta" href="#" data-hl-action="cta-click">Llamada a la acción</a>
+  </div>
+</div>
+
+<style>
+  .hl-ejemplo-hero-v1 {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4rem 1.5rem;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f8fafc;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .hl-ejemplo-hero-v1 *,
+  .hl-ejemplo-hero-v1 *::before,
+  .hl-ejemplo-hero-v1 *::after { box-sizing: inherit; }
+
+  .hl-ejemplo-hero-v1__inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hl-ejemplo-hero-v1__title {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    font-weight: 700;
+  }
+  .hl-ejemplo-hero-v1__subtitle {
+    margin: 0 0 2rem;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.5;
+    opacity: 0.85;
+  }
+  .hl-ejemplo-hero-v1__cta {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    background: #38bdf8;
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 150ms ease, background 150ms ease;
+  }
+  .hl-ejemplo-hero-v1__cta:hover,
+  .hl-ejemplo-hero-v1__cta:focus-visible {
+    background: #7dd3fc;
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  @media (max-width: 480px) {
+    .hl-ejemplo-hero-v1 { padding: 3rem 1rem; }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.querySelector('.hl-ejemplo-hero-v1');
+    if (!root || root.dataset.hlInit) return;
+    root.dataset.hlInit = '1';
+
+    var cta = root.querySelector('[data-hl-action="cta-click"]');
+    if (!cta) return;
+    cta.addEventListener('click', function (e) {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'cta_click', { block: 'ejemplo-hero-v1' });
+      }
+    });
+  })();
+</script>
