@@ -1,0 +1,163 @@
+<!-- nombre: doe-servicios-3-cards-v1 -->
+<!-- cliente: doe -->
+<!-- creado: 2026-04-13 -->
+<!-- spec: AI_Memory/Agent_Queue/archive/2026-04/20260413-2215-doe-tres-servicios-cards.md -->
+<!-- uso: pegar dentro de un widget HTML de Elementor -->
+
+<section class="hl-doe-servicios-v1" aria-labelledby="hl-doe-servicios-title">
+  <div class="hl-doe-servicios-v1__container">
+    <h2 id="hl-doe-servicios-title" class="hl-doe-servicios-v1__sr-only">Nuestros Servicios</h2>
+    <div class="hl-doe-servicios-v1__grid">
+      
+      <!-- Card 1 -->
+      <article class="hl-doe-servicios-v1__card hl-doe-servicios-v1__card--verde">
+        <h3 class="hl-doe-servicios-v1__card-title">Publicación de Avisos</h3>
+        <p class="hl-doe-servicios-v1__card-text">Publica tus avisos legales en el Diario Oficial con trámite 100% online.</p>
+        <button class="hl-doe-servicios-v1__cta" aria-label="Comenzar publicación de avisos legales" data-card-name="Publicación de Avisos">
+          Comenzar publicación
+        </button>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="hl-doe-servicios-v1__card hl-doe-servicios-v1__card--azul">
+        <h3 class="hl-doe-servicios-v1__card-title">Búsqueda de Publicaciones</h3>
+        <p class="hl-doe-servicios-v1__card-text">Consulta el archivo histórico de publicaciones del Diario Oficial.</p>
+        <button class="hl-doe-servicios-v1__cta" aria-label="Buscar ahora publicaciones históricas" data-card-name="Búsqueda de Publicaciones">
+          Buscar ahora
+        </button>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="hl-doe-servicios-v1__card hl-doe-servicios-v1__card--tostado">
+        <h3 class="hl-doe-servicios-v1__card-title">Firma Electrónica</h3>
+        <p class="hl-doe-servicios-v1__card-text">Firma electrónica avanzada reconocida para tus documentos legales.</p>
+        <button class="hl-doe-servicios-v1__cta" aria-label="Obtener firma electrónica avanzada" data-card-name="Firma Electrónica">
+          Obtener firma
+        </button>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .hl-doe-servicios-v1 {
+    font-family: "ITC Avant Garde Gothic", sans-serif;
+    font-size: 13px;
+    background-color: #FFFFFF;
+    padding: 60px 20px;
+  }
+  .hl-doe-servicios-v1__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  .hl-doe-servicios-v1__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hl-doe-servicios-v1__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .hl-doe-servicios-v1__card {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 32px 24px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    border-top: 4px solid transparent;
+  }
+  .hl-doe-servicios-v1__card--verde {
+    border-top-color: #419B6E;
+  }
+  .hl-doe-servicios-v1__card--azul {
+    border-top-color: #5B8BC1;
+  }
+  .hl-doe-servicios-v1__card--tostado {
+    border-top-color: #776A50;
+  }
+  .hl-doe-servicios-v1__card-title {
+    font-family: "ITC Avant Garde Gothic", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+    color: #FFFFFF;
+  }
+  .hl-doe-servicios-v1__card-text {
+    font-family: "ITC Avant Garde Gothic", sans-serif;
+    font-weight: 400;
+    font-size: 16.25px; /* 125% of 13px base */
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+    color: #FFFFFF;
+    flex-grow: 1;
+  }
+  .hl-doe-servicios-v1__cta {
+    background-color: #FCBD00;
+    color: #FFFFFF;
+    font-family: "ITC Avant Garde Gothic", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    padding: 0.65em 3em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+  .hl-doe-servicios-v1__cta::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #B4B3B338;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+  .hl-doe-servicios-v1__cta:hover::after,
+  .hl-doe-servicios-v1__cta:focus::after {
+    opacity: 1;
+  }
+  
+  @media (max-width: 700px) {
+    .hl-doe-servicios-v1__grid {
+      grid-template-columns: 1fr;
+    }
+    .hl-doe-servicios-v1__cta {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.querySelector('.hl-doe-servicios-v1');
+    if (!root || root.getAttribute('data-hl-init') === '1') return;
+    root.setAttribute('data-hl-init', '1');
+
+    var ctas = root.querySelectorAll('.hl-doe-servicios-v1__cta');
+    for (var i = 0; i < ctas.length; i++) {
+      ctas[i].addEventListener('click', function() {
+        var cardName = this.getAttribute('data-card-name');
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'servicio_cta_click', { card: cardName });
+        }
+      });
+    }
+  })();
+</script>
