@@ -6,3 +6,11 @@ node_modules/
 .env.*
 *.tmp
 *.swp
+
+# Credenciales y secretos
+secrets.*
+credentials.*
+auth.json
+config.local.*
+*.key
+*.pem
