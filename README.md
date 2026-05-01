@@ -2,7 +2,7 @@
 
 Biblioteca de secciones HTML autocontenidas para pegar en widgets **HTML de Elementor** en sitios WordPress de clientes Hypelab.
 
-Generadas por **Antigravity** bajo orquestación de **Talos** (Talosbrain), a partir de especificaciones escritas en el bus de tareas del vault (`AI_Memory/Agent_Queue/inbox/antigravity/`).
+Desarrolladas y mantenidas por el equipo de **Hypelab**.
 
 ## Convención
 
@@ -20,7 +20,7 @@ hypelab-blocks/
 ### Naming de ficheros
 
 - Usar `kebab-case`: `hero-producto-v1.html`, `cta-contacto-newsletter.html`.
-- Si hay variantes, sufijo `-v1`, `-v2`. No sobrescribir versiones anteriores — Antigravity hace nueva versión, no mutación.
+- Si hay variantes, sufijo `-v1`, `-v2`. No sobrescribir versiones anteriores — crear nueva versión.
 
 ### Estructura interna de cada `.html`
 
@@ -28,7 +28,6 @@ hypelab-blocks/
 <!-- nombre: hero-producto-v1 -->
 <!-- cliente: doe -->
 <!-- creado: 2026-04-13 -->
-<!-- spec: AI_Memory/Agent_Queue/archive/2026-04/20260413-XXXX-hero-doe.md -->
 <!-- uso: pegar dentro de un widget HTML de Elementor -->
 
 <div class="hl-hero-producto-v1">
@@ -61,10 +60,10 @@ hypelab-blocks/
 
 ## Flujo de trabajo
 
-1. Talos escribe una spec en `AI_Memory/Agent_Queue/inbox/antigravity/`.
-2. Antigravity la procesa, crea el fichero en `<cliente>/` o `_shared/`, hace commit y push.
-3. Marcel copia el contenido del `.html` al widget HTML de Elementor del sitio del cliente.
-4. Marcel publica y verifica visualmente.
+1. Se crea el bloque `.html` y se sube en una rama feature.
+2. Se valida visualmente en la preview de Vercel.
+3. Se hace merge a `main` — URL permanente disponible en `hypelab-blocks.vercel.app`.
+4. El contenido se pega en el widget HTML de Elementor del sitio del cliente y se publica.
 
 ## Licencia
 
