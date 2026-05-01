@@ -1,0 +1,280 @@
+<style>
+.px-team-grid {
+  display: grid;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "itc avant garde gothic std book", sans-serif;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1023px) {
+  .px-team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .px-team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.px-team-card {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.px-card-img-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.px-card-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.px-card-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(245, 245, 245, 0.89);
+  padding-top: 15%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.615s cubic-bezier(0.19, 1, 0.22, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+.px-card-img-wrap:hover .px-card-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.px-overlay-name {
+  font-size: 22.4px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.px-overlay-role {
+  font-size: 17.6px;
+  font-weight: normal;
+}
+
+.px-linkedin-link {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.px-linkedin-icon {
+  width: 32px;
+  height: 32px;
+  fill: #0077B5;
+  transition: fill 0.3s ease;
+  display: block;
+}
+
+.px-linkedin-icon:hover {
+  fill: rgb(173, 134, 71);
+}
+
+.px-card-name {
+  color: #61B49A;
+  font-size: 22.4px;
+  margin: 0 0 5px 0;
+  font-weight: 600;
+}
+
+.px-card-role {
+  color: #212529;
+  font-size: 17.6px;
+  margin: 0;
+  font-weight: normal;
+}
+
+.px-linkedin-placeholder {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 15px;
+}
+</style>
+
+<div class="px-team-grid">
+
+  <!-- Miembro 1 -->
+  <div class="px-team-card">
+    <div class="px-card-img-wrap">
+      <img src="https://praxis.cl/wp-content/uploads/2023/09/Maria-Jose-Juarez-Praxis.jpg" alt="María José Juárez">
+      <div class="px-card-overlay">
+        <div class="px-overlay-name">María José Juárez</div>
+        <div class="px-overlay-role">Gerente de Marketing y CX</div>
+      </div>
+    </div>
+    <a href="https://www.linkedin.com/in/mar%C3%ADa-jos%C3%A9-ju%C3%A1rez-hermosilla-a147a049/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de María José Juárez" class="px-linkedin-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <h3 class="px-card-name">María José Juárez</h3>
+    <p class="px-card-role">Gerente de Marketing y CX</p>
+  </div>
+
+  <!-- Miembro 2 -->
+  <div class="px-team-card">
+    <div class="px-card-img-wrap">
+      <img src="https://praxis.cl/wp-content/uploads/2023/09/Macarena-Catalan-Praxis.jpg" alt="Macarena Catalán">
+      <div class="px-card-overlay">
+        <div class="px-overlay-name">Macarena Catalán</div>
+        <div class="px-overlay-role">Gerente de Negocios</div>
+      </div>
+    </div>
+    <a href="https://www.linkedin.com/in/macarena-catal%C3%A1n-garc%C3%A9s-49037b1b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Macarena Catalán" class="px-linkedin-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <h3 class="px-card-name">Macarena Catalán</h3>
+    <p class="px-card-role">Gerente de Negocios</p>
+  </div>
+
+  <!-- Miembro 3 -->
+  <div class="px-team-card">
+    <div class="px-card-img-wrap">
+      <img src="https://praxis.cl/wp-content/uploads/2023/09/Francisco-Ordenes-Praxis.jpg" alt="Francisco Órdenes">
+      <div class="px-card-overlay">
+        <div class="px-overlay-name">Francisco Órdenes</div>
+        <div class="px-overlay-role">Consultor de Desarrollo Digital</div>
+      </div>
+    </div>
+    <a href="https://www.linkedin.com/in/francisco-ordenes-apablaza-10755450/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Francisco Órdenes" class="px-linkedin-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <h3 class="px-card-name">Francisco Órdenes</h3>
+    <p class="px-card-role">Consultor de Desarrollo Digital</p>
+  </div>
+
+  <!-- Miembro 4 -->
+  <div class="px-team-card">
+    <div class="px-card-img-wrap">
+      <img src="https://praxis.cl/wp-content/uploads/2023/09/Cristian-Rivas-Praxis.jpg" alt="Cristián Rivas">
+      <div class="px-card-overlay">
+        <div class="px-overlay-name">Cristián Rivas</div>
+        <div class="px-overlay-role">Gerente de Negocios</div>
+      </div>
+    </div>
+    <a href="https://www.linkedin.com/in/cristian-rivas-cl/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Cristián Rivas" class="px-linkedin-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <h3 class="px-card-name">Cristián Rivas</h3>
+    <p class="px-card-role">Gerente de Negocios</p>
+  </div>
+
+  <!-- Miembro 5 -->
+  <div class="px-team-card">
+    <div class="px-card-img-wrap">
+      <img src="https://praxis.cl/wp-content/uploads/2023/09/Karen-Palma-Praxis.jpg" alt="Karen Palma">
+      <div class="px-card-overlay">
+        <div class="px-overlay-name">Karen Palma</div>
+        <div class="px-overlay-role">Asistente</div>
+      </div>
+    </div>
+    <div class="px-linkedin-placeholder"></div>
+    <h3 class="px-card-name">Karen Palma</h3>
+    <p class="px-card-role">Asistente</p>
+  </div>
+
+  <!-- Miembro 6 -->
+  <div class="px-team-card">
+    <div class="px-card-img-wrap">
+      <img src="https://praxis.cl/wp-content/uploads/2023/09/Emilio-Sierpe-Praxis.jpg" alt="Emilio Sierpe">
+      <div class="px-card-overlay">
+        <div class="px-overlay-name">Emilio Sierpe</div>
+        <div class="px-overlay-role">Director Ejecutivo</div>
+      </div>
+    </div>
+    <a href="https://www.linkedin.com/in/emilio-sierpe-pav%C3%A9z-abb63622/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Emilio Sierpe" class="px-linkedin-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <h3 class="px-card-name">Emilio Sierpe</h3>
+    <p class="px-card-role">Director Ejecutivo</p>
+  </div>
+
+  <!-- Miembro 7 -->
+  <div class="px-team-card">
+    <div class="px-card-img-wrap">
+      <img src="https://praxis.cl/wp-content/uploads/2023/09/Carlos-Vila.png" alt="Carlos Vila">
+      <div class="px-card-overlay">
+        <div class="px-overlay-name">Carlos Vila</div>
+        <div class="px-overlay-role">Consultor Especialista</div>
+      </div>
+    </div>
+    <a href="https://www.linkedin.com/in/carlos-vila-barea-ba253521/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Carlos Vila" class="px-linkedin-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <h3 class="px-card-name">Carlos Vila</h3>
+    <p class="px-card-role">Consultor Especialista</p>
+  </div>
+
+  <!-- Miembro 8 -->
+  <div class="px-team-card">
+    <div class="px-card-img-wrap">
+      <img src="https://praxis.cl/wp-content/uploads/2023/09/Gabriela-Herman-Praxis-2.jpg" alt="Gabriela Herman">
+      <div class="px-card-overlay">
+        <div class="px-overlay-name">Gabriela Herman</div>
+        <div class="px-overlay-role">Analista de Experiencia de Clientes</div>
+      </div>
+    </div>
+    <a href="https://www.linkedin.com/in/gabriela-herman-salas-60110b124/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Gabriela Herman" class="px-linkedin-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <h3 class="px-card-name">Gabriela Herman</h3>
+    <p class="px-card-role">Analista de Experiencia de Clientes</p>
+  </div>
+
+  <!-- Miembro 9 -->
+  <div class="px-team-card">
+    <div class="px-card-img-wrap">
+      <img src="https://praxis.cl/wp-content/uploads/2023/09/Bastian-Nunez-Praxis.jpg" alt="Bastián Núñez">
+      <div class="px-card-overlay">
+        <div class="px-overlay-name">Bastián Núñez</div>
+        <div class="px-overlay-role">Consultor de Experiencia Clientes</div>
+      </div>
+    </div>
+    <a href="https://www.linkedin.com/in/bastian-nu%C3%B1ez-mallea-842bbb182/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Bastián Núñez" class="px-linkedin-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <h3 class="px-card-name">Bastián Núñez</h3>
+    <p class="px-card-role">Consultor de Experiencia Clientes</p>
+  </div>
+
+  <!-- Miembro 10 -->
+  <div class="px-team-card">
+    <div class="px-card-img-wrap">
+      <img src="https://praxis.cl/wp-content/uploads/2023/09/Barbara-Ayres-Praxis.jpg" alt="Bárbara Ayres">
+      <div class="px-card-overlay">
+        <div class="px-overlay-name">Bárbara Ayres</div>
+        <div class="px-overlay-role">Líder de Contenidos para Marketing</div>
+      </div>
+    </div>
+    <a href="https://www.linkedin.com/in/relacionadora-publica-marketing-digital-comunicaciones-cm-redes-sociales/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Bárbara Ayres" class="px-linkedin-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <h3 class="px-card-name">Bárbara Ayres</h3>
+    <p class="px-card-role">Líder de Contenidos para Marketing</p>
+  </div>
+
+</div>

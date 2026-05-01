@@ -1,0 +1,276 @@
+<style>
+.px-team-carousel-wrap {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: "itc avant garde gothic std book", sans-serif;
+  overflow: hidden;
+}
+
+.px-slides {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.px-team-card {
+  flex: 0 0 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 40px;
+}
+
+.px-card-img-wrap {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.px-card-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.px-linkedin-link {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.px-linkedin-icon {
+  width: 32px;
+  height: 32px;
+  fill: #0077B5;
+  transition: fill 0.3s ease;
+  display: block;
+}
+
+.px-linkedin-icon:hover {
+  fill: rgb(173, 134, 71);
+}
+
+.px-card-name {
+  color: #61B49A;
+  font-size: 22.4px;
+  margin: 0 0 5px 0;
+  font-weight: 600;
+}
+
+.px-card-role {
+  color: #212529;
+  font-size: 17.6px;
+  margin: 0;
+  font-weight: normal;
+}
+
+.px-linkedin-placeholder {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 15px;
+}
+
+.px-prev, .px-next {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.px-prev:hover, .px-next:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.px-prev {
+  left: 0;
+}
+
+.px-next {
+  right: 0;
+}
+</style>
+
+<div class="px-team-carousel-wrap" id="px-carousel">
+  <button class="px-prev" aria-label="Anterior">&#8592;</button>
+  <div class="px-slides" id="px-slides-container">
+
+    <!-- Miembro 1 -->
+    <div class="px-team-card">
+      <div class="px-card-img-wrap">
+        <img src="https://praxis.cl/wp-content/uploads/2023/09/Maria-Jose-Juarez-Praxis.jpg" alt="María José Juárez">
+      </div>
+      <a href="https://www.linkedin.com/in/mar%C3%ADa-jos%C3%A9-ju%C3%A1rez-hermosilla-a147a049/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de María José Juárez" class="px-linkedin-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <h3 class="px-card-name">María José Juárez</h3>
+      <p class="px-card-role">Gerente de Marketing y CX</p>
+    </div>
+
+    <!-- Miembro 2 -->
+    <div class="px-team-card">
+      <div class="px-card-img-wrap">
+        <img src="https://praxis.cl/wp-content/uploads/2023/09/Macarena-Catalan-Praxis.jpg" alt="Macarena Catalán">
+      </div>
+      <a href="https://www.linkedin.com/in/macarena-catal%C3%A1n-garc%C3%A9s-49037b1b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Macarena Catalán" class="px-linkedin-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <h3 class="px-card-name">Macarena Catalán</h3>
+      <p class="px-card-role">Gerente de Negocios</p>
+    </div>
+
+    <!-- Miembro 3 -->
+    <div class="px-team-card">
+      <div class="px-card-img-wrap">
+        <img src="https://praxis.cl/wp-content/uploads/2023/09/Francisco-Ordenes-Praxis.jpg" alt="Francisco Órdenes">
+      </div>
+      <a href="https://www.linkedin.com/in/francisco-ordenes-apablaza-10755450/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Francisco Órdenes" class="px-linkedin-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <h3 class="px-card-name">Francisco Órdenes</h3>
+      <p class="px-card-role">Consultor de Desarrollo Digital</p>
+    </div>
+
+    <!-- Miembro 4 -->
+    <div class="px-team-card">
+      <div class="px-card-img-wrap">
+        <img src="https://praxis.cl/wp-content/uploads/2023/09/Cristian-Rivas-Praxis.jpg" alt="Cristián Rivas">
+      </div>
+      <a href="https://www.linkedin.com/in/cristian-rivas-cl/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Cristián Rivas" class="px-linkedin-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <h3 class="px-card-name">Cristián Rivas</h3>
+      <p class="px-card-role">Gerente de Negocios</p>
+    </div>
+
+    <!-- Miembro 5 -->
+    <div class="px-team-card">
+      <div class="px-card-img-wrap">
+        <img src="https://praxis.cl/wp-content/uploads/2023/09/Karen-Palma-Praxis.jpg" alt="Karen Palma">
+      </div>
+      <div class="px-linkedin-placeholder"></div>
+      <h3 class="px-card-name">Karen Palma</h3>
+      <p class="px-card-role">Asistente</p>
+    </div>
+
+    <!-- Miembro 6 -->
+    <div class="px-team-card">
+      <div class="px-card-img-wrap">
+        <img src="https://praxis.cl/wp-content/uploads/2023/09/Emilio-Sierpe-Praxis.jpg" alt="Emilio Sierpe">
+      </div>
+      <a href="https://www.linkedin.com/in/emilio-sierpe-pav%C3%A9z-abb63622/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Emilio Sierpe" class="px-linkedin-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <h3 class="px-card-name">Emilio Sierpe</h3>
+      <p class="px-card-role">Director Ejecutivo</p>
+    </div>
+
+    <!-- Miembro 7 -->
+    <div class="px-team-card">
+      <div class="px-card-img-wrap">
+        <img src="https://praxis.cl/wp-content/uploads/2023/09/Carlos-Vila.png" alt="Carlos Vila">
+      </div>
+      <a href="https://www.linkedin.com/in/carlos-vila-barea-ba253521/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Carlos Vila" class="px-linkedin-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <h3 class="px-card-name">Carlos Vila</h3>
+      <p class="px-card-role">Consultor Especialista</p>
+    </div>
+
+    <!-- Miembro 8 -->
+    <div class="px-team-card">
+      <div class="px-card-img-wrap">
+        <img src="https://praxis.cl/wp-content/uploads/2023/09/Gabriela-Herman-Praxis-2.jpg" alt="Gabriela Herman">
+      </div>
+      <a href="https://www.linkedin.com/in/gabriela-herman-salas-60110b124/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Gabriela Herman" class="px-linkedin-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <h3 class="px-card-name">Gabriela Herman</h3>
+      <p class="px-card-role">Analista de Experiencia de Clientes</p>
+    </div>
+
+    <!-- Miembro 9 -->
+    <div class="px-team-card">
+      <div class="px-card-img-wrap">
+        <img src="https://praxis.cl/wp-content/uploads/2023/09/Bastian-Nunez-Praxis.jpg" alt="Bastián Núñez">
+      </div>
+      <a href="https://www.linkedin.com/in/bastian-nu%C3%B1ez-mallea-842bbb182/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Bastián Núñez" class="px-linkedin-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <h3 class="px-card-name">Bastián Núñez</h3>
+      <p class="px-card-role">Consultor de Experiencia Clientes</p>
+    </div>
+
+    <!-- Miembro 10 -->
+    <div class="px-team-card">
+      <div class="px-card-img-wrap">
+        <img src="https://praxis.cl/wp-content/uploads/2023/09/Barbara-Ayres-Praxis.jpg" alt="Bárbara Ayres">
+      </div>
+      <a href="https://www.linkedin.com/in/relacionadora-publica-marketing-digital-comunicaciones-cm-redes-sociales/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Bárbara Ayres" class="px-linkedin-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="px-linkedin-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <h3 class="px-card-name">Bárbara Ayres</h3>
+      <p class="px-card-role">Líder de Contenidos para Marketing</p>
+    </div>
+
+  </div>
+  <button class="px-next" aria-label="Siguiente">&#8594;</button>
+</div>
+
+<script>
+(function() {
+  const container = document.getElementById('px-slides-container');
+  const carouselWrap = document.getElementById('px-carousel');
+  const prevBtn = carouselWrap.querySelector('.px-prev');
+  const nextBtn = carouselWrap.querySelector('.px-next');
+  let currentIndex = 0;
+  const totalSlides = 10;
+  
+  function updateSlide() {
+    container.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+  
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1;
+    updateSlide();
+  });
+  
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0;
+    updateSlide();
+  });
+  
+  // Touch support
+  let startX = 0;
+  let endX = 0;
+  carouselWrap.addEventListener('touchstart', (e) => {
+    startX = e.changedTouches[0].screenX;
+  }, {passive: true});
+  
+  carouselWrap.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].screenX;
+    if (startX - endX > 50) {
+      // swipe left
+      currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0;
+      updateSlide();
+    } else if (endX - startX > 50) {
+      // swipe right
+      currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1;
+      updateSlide();
+    }
+  }, {passive: true});
+})();
+</script>
