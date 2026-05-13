@@ -2,8 +2,6 @@
 
 Biblioteca de secciones HTML autocontenidas para pegar en widgets **HTML de Elementor** en sitios WordPress de clientes Hypelab.
 
-Generadas por **Antigravity** bajo orquestación de **Talos** (Talosbrain), a partir de especificaciones escritas en el bus de tareas del vault (`AI_Memory/Agent_Queue/inbox/antigravity/`).
-
 ## Convención
 
 Una sección = **un fichero `.html` autocontenido** con HTML + `<style>` + `<script>` dentro. Cero dependencias externas salvo las que ya carga el sitio del cliente (jQuery si aplica, Elementor Pro, etc.).
