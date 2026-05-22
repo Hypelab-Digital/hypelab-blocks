@@ -2,13 +2,13 @@
 <!-- cliente: congreso-derecho-tecnologia (DOE / congresodyt) -->
 <!-- creado: 2026-05-22 -->
 <!-- uso: pegar dentro de un widget HTML de Elementor (banner de cifras del programa) -->
-<!-- paleta: verde #00e676 / fondo #1a1a1a (Estilo congresodyt) -->
+<!-- paleta real congresodyt.cl: verde #77FB9F / fondo #3C3C3B / Bebas Neue + Roboto -->
 
 <div class="cdt-stats-v1">
   <div class="cdt-stats-grid">
 
     <div class="cdt-stat">
-      <span class="cdt-icon" style="color:#b388ff" aria-hidden="true">
+      <span class="cdt-icon" style="color:#77FB9F" aria-hidden="true">
         <!-- micrófono -->
         <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <rect x="23" y="7" width="18" height="32" rx="9"/>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="cdt-stat">
-      <span class="cdt-icon" style="color:#00e5ff" aria-hidden="true">
+      <span class="cdt-icon" style="color:#2AF4F4" aria-hidden="true">
         <!-- paneles temáticos -->
         <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <rect x="9" y="12" width="46" height="17" rx="3.5"/>
@@ -42,7 +42,7 @@
     </div>
 
     <div class="cdt-stat">
-      <span class="cdt-icon" style="color:#00e676" aria-hidden="true">
+      <span class="cdt-icon" style="color:#77FB9F" aria-hidden="true">
         <!-- personas -->
         <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="32" cy="22" r="9"/>
@@ -64,9 +64,9 @@
 <style>
   /* Mismo sistema visual que estadisticas-congreso-v1 (idéntico, sin conflicto si conviven). */
   .cdt-stats-v1 {
-    background: #1a1a1a;
+    background: #3C3C3B;
     padding: 48px 24px;
-    font-family: "itc avant garde gothic std book", "Helvetica Neue", Arial, sans-serif;
+    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
     box-sizing: border-box;
   }
   .cdt-stats-v1 *, .cdt-stats-v1 *::before, .cdt-stats-v1 *::after { box-sizing: border-box; }
@@ -99,7 +99,7 @@
   .cdt-icon { margin-bottom: 14px; }
   .cdt-icon svg { width: 44px; height: 44px; display: block; }
 
-  .cdt-num { font-size: 48px; font-weight: 800; line-height: 1; letter-spacing: -0.5px; color: #00e676; }
+  .cdt-num { font-family: "Bebas Neue", "Roboto", sans-serif; font-size: 64px; font-weight: 400; line-height: 0.95; letter-spacing: 0.5px; color: #77FB9F; }
   .cdt-label {
     margin-top: 10px; color: #ffffff; font-size: 16px; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.5px;
@@ -109,7 +109,7 @@
   @media (max-width: 767px) {
     .cdt-stats-v1 { padding: 36px 16px; }
     .cdt-stats-grid { grid-template-columns: 1fr; gap: 30px; max-width: 320px; }
-    .cdt-num { font-size: 42px; }
+    .cdt-num { font-size: 56px; }
     .cdt-stat:not(:last-child)::after {
       top: auto; right: auto; bottom: -15px; left: 25%;
       height: 1px; width: 50%;
