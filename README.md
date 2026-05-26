@@ -67,3 +67,5 @@ hypelab-blocks/
 ## Licencia
 
 Privado. Uso exclusivo Hypelab - Digital.
+
+Integración Vikunja activa - 2026-05-26
