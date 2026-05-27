@@ -1,0 +1,589 @@
+<!-- nombre: galeria-fotos-v1 -->
+<!-- cliente: congreso-derecho-tecnologia -->
+<!-- creado: 2026-05-27 -->
+<!-- uso: pegar dentro de un widget HTML de Elementor (galeria de fotos del congreso) -->
+<!-- paleta: verde #77FB9F / fondo #3C3C3B / Bebas Neue + Roboto -->
+<!--
+  Features:
+  - Tabs por dia con sub-tabs (manana / tarde)
+  - Paginacion "Cargar mas" (20 por pagina) con scroll automatico al primer tile nuevo
+  - Lightbox con navegacion por teclado + boton descargar individual
+  - Seleccion multiple (Shift+click o icono +) + descarga conjunto en ZIP (JSZip lazy-load)
+  - Lazy load nativo, sin dependencias bundleadas
+
+  Estructura esperada en el servidor:
+    /wp-content/uploads/congreso-dyt/
+      manifest.json
+      jueves-manana/   *.webp
+      jueves-tarde/    *.webp
+      viernes-manana/  *.webp
+      viernes-tarde/   *.webp
+
+  Formato manifest.json:
+    {
+      "jueves-manana":  ["DSC_6996.webp", ...],
+      "jueves-tarde":   [...],
+      "viernes-manana": [...],
+      "viernes-tarde":  [...]
+    }
+
+  Ajusta CDYT_BASE_URL en el JS si las imagenes estan en otra ruta.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div id="cdyt-gallery" class="cdyt-root">
+  <header class="cdyt-header">
+    <h2>GALER&Iacute;A &middot; CONGRESO DE DERECHO Y TECNOLOG&Iacute;A</h2>
+    <p>Selecciona el d&iacute;a y la sesi&oacute;n. Haz clic en una foto para verla en grande o descargarla.</p>
+  </header>
+
+  <nav class="cdyt-day-tabs" role="tablist" aria-label="D&iacute;a">
+    <button class="cdyt-day is-active" data-day="jueves" role="tab" aria-selected="true">
+      <span class="cdyt-day-label">Jueves</span>
+      <span class="cdyt-day-date">14 mayo</span>
+    </button>
+    <button class="cdyt-day" data-day="viernes" role="tab" aria-selected="false">
+      <span class="cdyt-day-label">Viernes</span>
+      <span class="cdyt-day-date">15 mayo</span>
+    </button>
+  </nav>
+
+  <nav class="cdyt-session-tabs" role="tablist" aria-label="Sesi&oacute;n">
+    <button class="cdyt-session is-active" data-session="manana" role="tab" aria-selected="true">Ma&ntilde;ana</button>
+    <button class="cdyt-session" data-session="tarde" role="tab" aria-selected="false">Tarde</button>
+  </nav>
+
+  <div class="cdyt-toolbar">
+    <span class="cdyt-count" id="cdyt-count">0 fotos</span>
+    <div class="cdyt-toolbar-actions">
+      <button class="cdyt-btn cdyt-btn-ghost" id="cdyt-select-all" type="button">Seleccionar todo</button>
+      <button class="cdyt-btn cdyt-btn-ghost" id="cdyt-clear" type="button">Limpiar</button>
+      <button class="cdyt-btn cdyt-btn-primary" id="cdyt-download-zip" type="button" disabled>
+        Descargar selecci&oacute;n <span class="cdyt-badge" id="cdyt-selected-count">0</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="cdyt-grid" id="cdyt-grid" aria-live="polite"></div>
+
+  <div class="cdyt-load-more-wrap">
+    <button class="cdyt-btn cdyt-btn-primary cdyt-load-more" id="cdyt-load-more" type="button" hidden>
+      Cargar m&aacute;s <span class="cdyt-badge" id="cdyt-remaining">0</span>
+    </button>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="cdyt-lightbox" id="cdyt-lightbox" aria-hidden="true" role="dialog" aria-label="Visor de imagen">
+    <button class="cdyt-lb-close" id="cdyt-lb-close" aria-label="Cerrar">&times;</button>
+    <button class="cdyt-lb-nav cdyt-lb-prev" id="cdyt-lb-prev" aria-label="Anterior">&#10094;</button>
+    <button class="cdyt-lb-nav cdyt-lb-next" id="cdyt-lb-next" aria-label="Siguiente">&#10095;</button>
+    <figure class="cdyt-lb-figure">
+      <img id="cdyt-lb-img" alt="">
+      <figcaption class="cdyt-lb-caption">
+        <span id="cdyt-lb-name"></span>
+        <a id="cdyt-lb-download" class="cdyt-btn cdyt-btn-primary" download>Descargar</a>
+      </figcaption>
+    </figure>
+  </div>
+</div>
+
+<style>
+  /* Prefijo cdyt- para no chocar con el tema */
+  #cdyt-gallery, #cdyt-gallery *,
+  .cdyt-lightbox, .cdyt-lightbox * { box-sizing: border-box; }
+
+  /* Asegurar que el atributo [hidden] siempre oculta, aunque haya un display: explícito */
+  #cdyt-gallery [hidden], .cdyt-lightbox[aria-hidden="true"]:not(.is-open) { display: none !important; }
+
+  .cdyt-root {
+    --cdyt-bg: #3C3C3B;
+    --cdyt-card: #2f2f2e;
+    --cdyt-line: rgba(255,255,255,0.10);
+    --cdyt-text: #FFFFFF;
+    --cdyt-muted: rgba(255,255,255,0.55);
+    --cdyt-accent: #77FB9F;
+    --cdyt-accent-text: #1a1a1a;
+    --cdyt-accent-hover-bg: #3C3C3B;    /* hover real de botones congresodyt */
+    --cdyt-accent-hover-text: #FFFFFF;
+    --cdyt-font-head: "Bebas Neue", Impact, sans-serif;
+    --cdyt-font-body: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-family: var(--cdyt-font-body);
+    color: var(--cdyt-text);
+    background: var(--cdyt-bg);
+    padding: clamp(20px, 3vw, 40px);
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+  .cdyt-header h2 {
+    margin: 0 0 8px;
+    font-family: var(--cdyt-font-head);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: 1px;
+    line-height: 1.05;
+    color: #FFFFFF;
+  }
+  .cdyt-header p {
+    margin: 0 0 22px;
+    color: var(--cdyt-muted);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* Day tabs */
+  .cdyt-day-tabs {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--cdyt-line);
+    padding-bottom: 16px; margin-bottom: 14px;
+  }
+  .cdyt-day {
+    background: transparent !important; color: var(--cdyt-text) !important;
+    border: 1px solid rgba(255,255,255,0.25) !important; border-radius: 0 !important;
+    padding: 12px 22px !important; cursor: pointer;
+    display: flex; flex-direction: column; align-items: flex-start;
+    line-height: 1.1; transition: all .15s ease;
+    font-family: var(--cdyt-font-head) !important; letter-spacing: 0.6px;
+    text-shadow: none !important; box-shadow: none !important;
+  }
+  .cdyt-day:hover {
+    background: var(--cdyt-accent-hover-bg) !important;
+    color: var(--cdyt-accent-hover-text) !important;
+    border-color: var(--cdyt-accent) !important;
+  }
+  .cdyt-day.is-active {
+    background: var(--cdyt-accent) !important;
+    color: var(--cdyt-accent-text) !important;
+    border-color: var(--cdyt-accent) !important;
+  }
+  .cdyt-day.is-active:hover {
+    background: var(--cdyt-accent-hover-bg) !important;
+    color: var(--cdyt-accent-hover-text) !important;
+    border-color: var(--cdyt-accent) !important;
+  }
+  .cdyt-day-label { font-weight: 400; font-size: 22px; }
+  .cdyt-day-date {
+    font-family: var(--cdyt-font-body); font-size: 11px; opacity: .85;
+    letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;
+  }
+
+  /* Session tabs */
+  .cdyt-session-tabs { display: flex; gap: 4px; margin-bottom: 20px; }
+  .cdyt-session {
+    background: transparent !important; color: var(--cdyt-muted) !important;
+    border: none !important; border-bottom: 3px solid transparent !important;
+    border-radius: 0 !important;
+    padding: 10px 14px !important; cursor: pointer; font-size: 16px;
+    font-family: var(--cdyt-font-head) !important; letter-spacing: 0.6px; text-transform: uppercase;
+    transition: all .15s ease;
+    text-shadow: none !important; box-shadow: none !important;
+  }
+  .cdyt-session:hover { color: var(--cdyt-text) !important; }
+  .cdyt-session.is-active {
+    color: var(--cdyt-accent) !important;
+    border-bottom-color: var(--cdyt-accent) !important;
+  }
+
+  /* Toolbar */
+  .cdyt-toolbar {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px; flex-wrap: wrap; margin-bottom: 18px;
+  }
+  .cdyt-count {
+    color: var(--cdyt-muted); font-size: 13px;
+    text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500;
+  }
+  .cdyt-toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* Buttons */
+  .cdyt-btn {
+    border-radius: 0 !important; padding: 10px 18px !important; cursor: pointer; font-size: 14px;
+    border: 1px solid rgba(255,255,255,0.25) !important;
+    background: transparent !important; color: var(--cdyt-text) !important;
+    font-family: var(--cdyt-font-head) !important; letter-spacing: 0.6px !important;
+    text-transform: uppercase !important;
+    transition: all .15s ease; display: inline-flex; align-items: center; gap: 8px;
+    text-decoration: none !important; font-weight: 400;
+    text-shadow: none !important; box-shadow: none !important;
+  }
+  .cdyt-btn:disabled { opacity: .35 !important; cursor: not-allowed !important; }
+  .cdyt-btn-ghost:hover:not(:disabled) {
+    background: var(--cdyt-accent-hover-bg) !important;
+    color: var(--cdyt-accent-hover-text) !important;
+    border-color: var(--cdyt-accent) !important;
+  }
+  .cdyt-btn-primary {
+    background: var(--cdyt-accent) !important;
+    color: var(--cdyt-accent-text) !important;
+    border-color: var(--cdyt-accent) !important;
+    font-weight: 500;
+  }
+  .cdyt-btn-primary:hover:not(:disabled) {
+    background: var(--cdyt-accent-hover-bg) !important;
+    color: var(--cdyt-accent-hover-text) !important;
+    border-color: var(--cdyt-accent) !important;
+  }
+  .cdyt-badge {
+    background: rgba(0,0,0,.18); color: inherit; border-radius: 0;
+    padding: 2px 8px; font-size: 13px; min-width: 24px; text-align: center;
+    font-family: var(--cdyt-font-body); font-weight: 600;
+  }
+  .cdyt-btn-ghost .cdyt-badge { background: rgba(255,255,255,.12); }
+
+  /* Grid */
+  .cdyt-grid {
+    display: grid; gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  @media (min-width: 768px) {
+    .cdyt-grid { gap: 12px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  }
+
+  .cdyt-tile {
+    position: relative; aspect-ratio: 3/2; overflow: hidden;
+    border-radius: 0; background: var(--cdyt-card);
+    cursor: pointer; border: 3px solid transparent;
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .cdyt-tile:hover { box-shadow: 0 8px 22px rgba(0,0,0,0.35); }
+  .cdyt-tile img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .35s ease;
+  }
+  .cdyt-tile:hover img { transform: scale(1.04); }
+  .cdyt-tile.is-selected { border-color: var(--cdyt-accent); }
+  .cdyt-tile.is-selected::after {
+    content: "✓"; position: absolute; top: 8px; right: 8px;
+    width: 28px; height: 28px; border-radius: 0;
+    background: var(--cdyt-accent); color: var(--cdyt-accent-text); font-weight: 700;
+    display: grid; place-items: center; font-size: 16px;
+  }
+  .cdyt-tile-check {
+    position: absolute; top: 8px; right: 8px; width: 28px; height: 28px;
+    border-radius: 0; background: rgba(0,0,0,.7); border: 1px solid rgba(255,255,255,.6);
+    display: grid; place-items: center; color: white; font-size: 16px;
+    opacity: 0; transition: opacity .15s ease;
+  }
+  .cdyt-tile:hover .cdyt-tile-check { opacity: 1; }
+  .cdyt-tile.is-selected .cdyt-tile-check { display: none; }
+
+  /* Load more */
+  .cdyt-load-more-wrap {
+    display: flex; justify-content: center; margin-top: 24px;
+  }
+  .cdyt-load-more {
+    font-size: 16px; padding: 14px 32px;
+  }
+
+  /* Lightbox */
+  .cdyt-lightbox {
+    position: fixed; inset: 0; background: rgba(0, 0, 0, .94);
+    display: none; align-items: center; justify-content: center;
+    z-index: 99999; padding: 20px;
+    font-family: var(--cdyt-font-body);
+  }
+  .cdyt-lightbox.is-open { display: flex; }
+  .cdyt-lb-figure {
+    margin: 0; max-width: 95vw; max-height: 95vh;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .cdyt-lb-figure img {
+    max-width: 100%; max-height: 80vh; object-fit: contain;
+    border-radius: 0; box-shadow: 0 20px 60px rgba(0,0,0,.6);
+  }
+  .cdyt-lb-caption {
+    display: flex; align-items: center; gap: 16px; color: var(--cdyt-text);
+    font-size: 13px; letter-spacing: 0.3px;
+  }
+  .cdyt-lb-close, .cdyt-lb-nav {
+    position: absolute;
+    background: rgba(255,255,255,.08) !important; color: #FFFFFF !important;
+    border: 1px solid rgba(255,255,255,.18) !important; border-radius: 50% !important;
+    width: 46px !important; height: 46px !important; cursor: pointer; font-size: 20px;
+    display: grid; place-items: center; font-family: inherit;
+    transition: background .15s, border-color .15s, color .15s;
+    text-shadow: none !important; box-shadow: none !important;
+  }
+  .cdyt-lb-close:hover, .cdyt-lb-nav:hover {
+    background: var(--cdyt-accent-hover-bg) !important;
+    color: var(--cdyt-accent-hover-text) !important;
+    border-color: var(--cdyt-accent) !important;
+  }
+  .cdyt-lb-close { top: 20px; right: 20px; }
+  .cdyt-lb-prev { left: 20px; top: 50%; transform: translateY(-50%); }
+  .cdyt-lb-next { right: 20px; top: 50%; transform: translateY(-50%); }
+
+  .cdyt-empty {
+    grid-column: 1 / -1; text-align: center; color: var(--cdyt-muted);
+    padding: 60px 20px; font-size: 14px;
+  }
+
+  @media (max-width: 767px) {
+    .cdyt-toolbar { flex-direction: column; align-items: stretch; }
+    .cdyt-toolbar-actions { justify-content: space-between; }
+    .cdyt-btn { padding: 9px 12px; font-size: 13px; }
+  }
+</style>
+
+<script>
+(function() {
+  'use strict';
+
+  // ============================================================
+  // CONFIG
+  // ============================================================
+  var CDYT_BASE_URL = '/wp-content/uploads/congreso-dyt';
+  var CDYT_MANIFEST_URL = CDYT_BASE_URL + '/manifest.json';
+  var CDYT_PAGE_SIZE = 20;  // imágenes por página - clic "Cargar más" añade otras 20
+
+  var grid = document.getElementById('cdyt-grid');
+  var countEl = document.getElementById('cdyt-count');
+  var selCountEl = document.getElementById('cdyt-selected-count');
+  var btnDownload = document.getElementById('cdyt-download-zip');
+  var btnSelectAll = document.getElementById('cdyt-select-all');
+  var btnClear = document.getElementById('cdyt-clear');
+  var btnLoadMore = document.getElementById('cdyt-load-more');
+  var remainingEl = document.getElementById('cdyt-remaining');
+  var lb = document.getElementById('cdyt-lightbox');
+  var lbImg = document.getElementById('cdyt-lb-img');
+  var lbName = document.getElementById('cdyt-lb-name');
+  var lbDl = document.getElementById('cdyt-lb-download');
+
+  var state = {
+    manifest: null,
+    day: 'jueves',
+    session: 'manana',
+    selected: new Set(),
+    currentList: [],
+    visibleCount: 0,
+    lbIndex: 0
+  };
+
+  function sectionKey() { return state.day + '-' + state.session; }
+  function urlFor(file) { return CDYT_BASE_URL + '/' + sectionKey() + '/' + file; }
+
+  // Tabs
+  document.querySelectorAll('.cdyt-day').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.cdyt-day').forEach(function(b) {
+        b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('is-active'); btn.setAttribute('aria-selected', 'true');
+      state.day = btn.dataset.day;
+      resetAndRender();
+    });
+  });
+  document.querySelectorAll('.cdyt-session').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.cdyt-session').forEach(function(b) {
+        b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('is-active'); btn.setAttribute('aria-selected', 'true');
+      state.session = btn.dataset.session;
+      resetAndRender();
+    });
+  });
+
+  function resetAndRender() {
+    state.visibleCount = 0;
+    grid.innerHTML = '';
+    if (!state.manifest) return;
+    state.currentList = state.manifest[sectionKey()] || [];
+    countEl.textContent = state.currentList.length + (state.currentList.length === 1 ? ' foto' : ' fotos');
+    if (!state.currentList.length) {
+      grid.innerHTML = '<div class="cdyt-empty">No hay fotos en esta sesi&oacute;n.</div>';
+      btnLoadMore.hidden = true;
+      return;
+    }
+    appendPage();
+  }
+
+  function appendPage(scrollToNew) {
+    var start = state.visibleCount;
+    var end = Math.min(start + CDYT_PAGE_SIZE, state.currentList.length);
+    var frag = document.createDocumentFragment();
+    var firstNewTile = null;
+    for (var i = start; i < end; i++) {
+      var t = buildTile(state.currentList[i], i);
+      if (i === start) firstNewTile = t;
+      frag.appendChild(t);
+    }
+    grid.appendChild(frag);
+    state.visibleCount = end;
+    updateLoadMore();
+    // Tras "Cargar más", lleva el viewport al primer tile recién añadido
+    // para que el usuario vea las fotos nuevas sin tener que hacer scroll.
+    if (scrollToNew && firstNewTile) {
+      requestAnimationFrame(function() {
+        firstNewTile.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
+
+  function buildTile(file, idx) {
+    var url = urlFor(file);
+    var tile = document.createElement('div');
+    tile.className = 'cdyt-tile';
+    tile.dataset.url = url;
+    tile.dataset.name = file;
+    tile.dataset.idx = idx;
+    if (state.selected.has(url)) tile.classList.add('is-selected');
+    var img = document.createElement('img');
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.src = url;
+    img.alt = file;
+    var check = document.createElement('div');
+    check.className = 'cdyt-tile-check';
+    check.setAttribute('aria-hidden', 'true');
+    check.textContent = '+';
+    tile.appendChild(img);
+    tile.appendChild(check);
+    tile.addEventListener('click', function(e) {
+      if (e.shiftKey || e.metaKey || e.ctrlKey) {
+        toggleSelect(tile, url);
+      } else {
+        openLightbox(parseInt(tile.dataset.idx, 10));
+      }
+    });
+    check.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleSelect(tile, url);
+    });
+    return tile;
+  }
+
+  function updateLoadMore() {
+    var remaining = state.currentList.length - state.visibleCount;
+    if (remaining <= 0) {
+      btnLoadMore.hidden = true;
+    } else {
+      btnLoadMore.hidden = false;
+      remainingEl.textContent = remaining;
+    }
+  }
+
+  btnLoadMore.addEventListener('click', function() { appendPage(true); });
+
+  function toggleSelect(tile, url) {
+    if (state.selected.has(url)) { state.selected.delete(url); tile.classList.remove('is-selected'); }
+    else { state.selected.add(url); tile.classList.add('is-selected'); }
+    updateSelUI();
+  }
+
+  function updateSelUI() {
+    var n = state.selected.size;
+    selCountEl.textContent = n;
+    btnDownload.disabled = n === 0;
+  }
+
+  btnSelectAll.addEventListener('click', function() {
+    // Selecciona TODA la lista actual (no solo lo visible)
+    state.currentList.forEach(function(file) { state.selected.add(urlFor(file)); });
+    document.querySelectorAll('.cdyt-tile').forEach(function(t) { t.classList.add('is-selected'); });
+    updateSelUI();
+  });
+  btnClear.addEventListener('click', function() {
+    state.selected.clear();
+    document.querySelectorAll('.cdyt-tile').forEach(function(t) { t.classList.remove('is-selected'); });
+    updateSelUI();
+  });
+
+  // ZIP descarga - JSZip lazy load desde CDN
+  btnDownload.addEventListener('click', function() {
+    if (state.selected.size === 0) return;
+    btnDownload.disabled = true;
+    btnDownload.textContent = 'Preparando ZIP...';
+    loadScript('https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js', function() {
+      loadScript('https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js', zipSelected);
+    });
+  });
+
+  function loadScript(src, cb) {
+    if (document.querySelector('script[data-cdyt-src="' + src + '"]')) { cb(); return; }
+    var s = document.createElement('script');
+    s.src = src; s.dataset.cdytSrc = src; s.onload = cb;
+    s.onerror = function() {
+      alert('No se pudo cargar la librería de ZIP. Revisa la conexión.');
+      resetZipBtn();
+    };
+    document.head.appendChild(s);
+  }
+
+  function resetZipBtn() {
+    btnDownload.innerHTML = 'Descargar selecci&oacute;n <span class="cdyt-badge" id="cdyt-selected-count">' + state.selected.size + '</span>';
+    selCountEl = document.getElementById('cdyt-selected-count');
+    btnDownload.disabled = state.selected.size === 0;
+  }
+
+  function zipSelected() {
+    var zip = new JSZip();
+    var urls = Array.from(state.selected);
+    var done = 0, total = urls.length;
+    urls.forEach(function(url) {
+      fetch(url).then(function(r) { return r.blob(); }).then(function(blob) {
+        zip.file(url.split('/').pop(), blob);
+        done++;
+        btnDownload.textContent = 'Descargando ' + done + '/' + total + '...';
+        if (done === total) {
+          zip.generateAsync({ type: 'blob' }).then(function(content) {
+            saveAs(content, 'congreso-dyt-' + Date.now() + '.zip');
+            resetZipBtn();
+          });
+        }
+      }).catch(function() {
+        done++;
+        if (done === total) resetZipBtn();
+      });
+    });
+  }
+
+  // Lightbox
+  function openLightbox(idx) {
+    state.lbIndex = idx;
+    showLb();
+    lb.classList.add('is-open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function showLb() {
+    var file = state.currentList[state.lbIndex];
+    var url = urlFor(file);
+    lbImg.src = url; lbImg.alt = file;
+    lbName.textContent = file;
+    lbDl.href = url; lbDl.download = file;
+  }
+  function closeLb() {
+    lb.classList.remove('is-open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('cdyt-lb-close').addEventListener('click', closeLb);
+  document.getElementById('cdyt-lb-prev').addEventListener('click', function(e) {
+    e.stopPropagation();
+    state.lbIndex = (state.lbIndex - 1 + state.currentList.length) % state.currentList.length;
+    showLb();
+  });
+  document.getElementById('cdyt-lb-next').addEventListener('click', function(e) {
+    e.stopPropagation();
+    state.lbIndex = (state.lbIndex + 1) % state.currentList.length;
+    showLb();
+  });
+  lb.addEventListener('click', function(e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') document.getElementById('cdyt-lb-prev').click();
+    if (e.key === 'ArrowRight') document.getElementById('cdyt-lb-next').click();
+  });
+
+  // Carga manifest
+  fetch(CDYT_MANIFEST_URL, { cache: 'no-store' })
+    .then(function(r) { if (!r.ok) throw new Error('manifest'); return r.json(); })
+    .then(function(json) { state.manifest = json; resetAndRender(); })
+    .catch(function() {
+      grid.innerHTML = '<div class="cdyt-empty">No se pudo cargar el manifest. Comprueba que <code>' + CDYT_MANIFEST_URL + '</code> existe.</div>';
+    });
+})();
+</script>
