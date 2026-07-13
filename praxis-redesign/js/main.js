@@ -6,8 +6,8 @@
 
   /* ── Toggle claro/oscuro ── */
   var LOGOS = {
-    light: "assets/logo-praxis-dark.png",
-    dark: "assets/logo-praxis.png"
+    light: "/praxis-redesign/assets/logo-praxis-dark.png",
+    dark: "/praxis-redesign/assets/logo-praxis.png"
   };
   function applyTheme(theme) {
     if (theme === "dark") {
