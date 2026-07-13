@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Medición Experiencia de Clientes — Praxis · Propuesta de rediseño</title>
+<meta name="description" content="Propuesta de rediseño — Praxis Customer Experience">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>
+/* aplicar tema guardado antes del primer paint para evitar flash */
+(function () {
+  try {
+    var t = localStorage.getItem("praxis-theme");
+    if (t === "dark") document.documentElement.setAttribute("data-theme", "dark");
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+
+<div class="scroll-progress" aria-hidden="true"><span id="scrollBar"></span></div>
+
+<!-- ═══════════ NAV ═══════════ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo" aria-label="Praxis">
+      <img src="assets/logo-praxis-dark.png" alt="Praxis" height="34" class="js-logo">
+    </a>
+
+    <nav class="nav__menu" id="navMenu" aria-label="Menú principal">
+      <div class="nav__item nav__item--drop">
+        <button class="nav__link" aria-expanded="false">Soluciones <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        <div class="nav__dropdown">
+          <div class="nav__dropcol">
+            <a href="#" class="nav__droplink nav__droplink--active">Medición experiencia de clientes</a>
+          </div>
+          <div class="nav__dropcol">
+            <span class="nav__droptitle">Benchmark</span>
+            <a href="#" class="nav__droplink">PXI</a>
+            <a href="#" class="nav__droplink">Procalidad</a>
+          </div>
+          <div class="nav__dropcol">
+            <span class="nav__droptitle">Digitales</span>
+            <a href="#" class="nav__droplink">Praxis One</a>
+            <a href="#" class="nav__droplink">Feedback Online</a>
+          </div>
+          <div class="nav__dropcol">
+            <a href="#" class="nav__droplink">Todos los servicios</a>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="nav__link">Blog</a>
+      <a href="#" class="btn btn--sm">Hablemos</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar entre tema claro y oscuro" title="Claro / Oscuro">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+      </button>
+    </nav>
+
+    <button class="nav__burger" id="navBurger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="orb orb--1"></div>
+    <div class="orb orb--2"></div>
+    <div class="orb orb--3"></div>
+    <div class="hero__grid"></div>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow reveal">Customer Experience</p>
+      <h1 class="hero__title">
+        <span class="line"><span>Mide y mejora</span></span>
+        <span class="line"><span>la experiencia</span></span>
+        <span class="line"><span>de tus <em>clientes</em></span></span>
+      </h1>
+      <p class="hero__sub reveal" data-delay="400">Descubre qué y cómo miden la experiencia de sus clientes las empresas líderes.</p>
+      <div class="hero__cta reveal" data-delay="550">
+        <a href="#contacto" class="btn btn--lg">Hablemos <span class="btn__arrow">→</span></a>
+        <a href="#como-funciona" class="btn btn--ghost btn--lg">Cómo funciona</a>
+      </div>
+    </div>
+
+    <div class="hero__visual reveal" data-delay="500">
+      <div class="chart-card">
+        <div class="chart-card__head">
+          <span class="chart-card__dot"></span>
+          <span>Tracking de Experiencia · NPS®</span>
+        </div>
+        <svg viewBox="0 0 420 220" class="chart" aria-hidden="true">
+          <defs>
+            <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#75B9A6" stop-opacity=".35"/>
+              <stop offset="100%" stop-color="#75B9A6" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g class="chart__gridlines">
+            <line x1="0" y1="55" x2="420" y2="55"/>
+            <line x1="0" y1="110" x2="420" y2="110"/>
+            <line x1="0" y1="165" x2="420" y2="165"/>
+          </g>
+          <path class="chart__area" d="M10,170 C60,160 90,120 140,125 C190,130 210,80 260,72 C310,64 340,50 410,32 L410,220 L10,220 Z" fill="url(#areaGrad)"/>
+          <path class="chart__line" d="M10,170 C60,160 90,120 140,125 C190,130 210,80 260,72 C310,64 340,50 410,32" fill="none"/>
+          <circle class="chart__point" cx="410" cy="32" r="5"/>
+        </svg>
+        <div class="chart-card__stats">
+          <div><strong data-count="72" class="count">0</strong><span>NPS actual</span></div>
+          <div><strong>+<span data-count="18" class="count">0</span></strong><span>pts en 12 meses</span></div>
+          <div><strong><span data-count="94" class="count">0</span>%</strong><span>satisfacción</span></div>
+        </div>
+      </div>
+      <div class="float-chip float-chip--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg> Percepción en tiempo real</div>
+      <div class="float-chip float-chip--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg> Palancas de mejora</div>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true"><span></span></div>
+</section>
+
+<!-- ═══════════ ¿SABÍAS QUÉ? ═══════════ -->
+<section class="stat-section" id="sabias-que">
+  <div class="container stat-section__inner">
+    <div class="stat-section__number reveal">
+      <p class="eyebrow">¿Sabías qué?</p>
+      <div class="bignum"><span data-count="10" class="count">0</span><span class="bignum__pct">%</span></div>
+      <div class="bignum__bar"><span></span></div>
+    </div>
+    <div class="stat-section__copy">
+      <h2 class="reveal">Solo el 10% de las empresas en Chile integra los datos de percepción con sus datos duros</h2>
+      <ul class="checklist">
+        <li class="reveal">Mide como experto.</li>
+        <li class="reveal" data-delay="100">Conoce la percepción de tus clientes en tiempo real.</li>
+        <li class="reveal" data-delay="200">Identifica palancas y focos de mejora.</li>
+        <li class="reveal" data-delay="300">Fideliza más a tus clientes.</li>
+        <li class="reveal" data-delay="400">Compara tu medición contra tu industria y competidores (benchmark).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CÓMO FUNCIONA ═══════════ -->
+<section class="steps" id="como-funciona">
+  <div class="container">
+    <p class="eyebrow reveal">¿Cómo funciona?</p>
+    <h2 class="section-title reveal">Te acompañamos a definir<br>qué y cómo medir</h2>
+
+    <div class="steps__track">
+      <div class="steps__line" aria-hidden="true"><span id="stepsProgress"></span></div>
+
+      <article class="step reveal">
+        <div class="step__num">01</div>
+        <h3>Definimos</h3>
+        <p>Te acompañamos a definir qué y cómo medir.</p>
+      </article>
+      <article class="step reveal" data-delay="120">
+        <div class="step__num">02</div>
+        <h3>Captamos</h3>
+        <p>Captamos la voz de tus clientes a través de metodologías elaboradas con las mejores prácticas.</p>
+      </article>
+      <article class="step reveal" data-delay="240">
+        <div class="step__num">03</div>
+        <h3>Analizamos</h3>
+        <p>Utilizamos herramientas de análisis estadísticos avanzados y plataformas de fácil acceso para que puedas monitorear tus indicadores.</p>
+      </article>
+      <article class="step reveal" data-delay="360">
+        <div class="step__num">04</div>
+        <h3>Accionamos</h3>
+        <p>Te entregamos informes con recomendaciones accionables y capaces de mejorar la experiencia de tus clientes.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TRACKING ═══════════ -->
+<section class="tracking" id="tracking">
+  <div class="container">
+    <div class="tracking__head">
+      <p class="eyebrow reveal">Monitorea la evolución de la experiencia de forma continua</p>
+      <h2 class="section-title reveal">¿Para qué sirve el<br>Tracking de Experiencia?</h2>
+      <p class="tracking__intro reveal">El Tracking de Experiencia es una medición que permite analizar cómo evoluciona la calidad de la experiencia en un viaje o interacción clave de los clientes.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card reveal">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h3>Identifica</h3>
+        <p>Tendencias y anticipa problemas que podrían afectar la experiencia de los clientes.</p>
+      </article>
+      <article class="card reveal" data-delay="100">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+        </div>
+        <h3>Evalúa</h3>
+        <p>El impacto de las acciones de mejora en la satisfacción y la recomendación.</p>
+      </article>
+      <article class="card reveal" data-delay="200">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20v-10M18 20v-4"/><path d="M4 4h16"/><path d="M8 4v3M16 4v3"/></svg>
+        </div>
+        <h3>Ajusta</h3>
+        <p>Tu modelo de atención basado en datos en tiempo real.</p>
+      </article>
+      <article class="card reveal" data-delay="300">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 16.9 6.2 20l1.1-6.5L2.6 8.8l6.5-.9z"/></svg>
+        </div>
+        <h3>Reconoce</h3>
+        <p>Los factores con mayor impacto en la experiencia y los prioriza en una hoja de ruta de mejora.</p>
+      </article>
+    </div>
+
+    <div class="tracking__for reveal">
+      <p class="eyebrow">Pensado para</p>
+      <h3>Organizaciones que buscan</h3>
+      <p>Optimizar continuamente sus puntos de contacto más importantes, a partir de la evaluación del impacto de sus iniciativas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TESTIMONIOS ═══════════ -->
+<section class="testimonials" id="testimonios">
+  <div class="container">
+    <p class="eyebrow reveal">Testimonios</p>
+    <h2 class="section-title reveal">Lo que dicen nuestros clientes</h2>
+
+    <div class="tslider reveal" id="tslider">
+      <div class="tslider__viewport">
+        <article class="tslide is-active">
+          <blockquote>“Praxis nos ha ayudado a conocer en profundidad a nuestros clientes, permitiéndonos medir su satisfacción, entender su percepción y evaluar su lealtad. Esta información ha sido clave para mejorar nuestra experiencia de servicio. Más allá de la metodología, sus recomendaciones estratégicas han sido fundamentales para tomar decisiones con foco en el cliente.”</blockquote>
+          <footer>
+            <span class="tslide__avatar">PF</span>
+            <div><strong>Paulina Fernández Dib</strong><span>Subgerente de Marketing · Gtd</span></div>
+          </footer>
+        </article>
+        <article class="tslide">
+          <blockquote>“El trabajo con Praxis marcó un antes y un después en cómo entendemos y gestionamos la experiencia de nuestros clientes, en una industria históricamente centrada en el producto. Nos ayudaron a capturar y desplegar estratégicamente la voz del cliente en todas las áreas de la organización.”</blockquote>
+          <footer>
+            <span class="tslide__avatar">AR</span>
+            <div><strong>Anastasia Rivera</strong><span>Jefa de Experiencia y Servicio al Cliente · AZA Acero Sostenible</span></div>
+          </footer>
+        </article>
+        <article class="tslide">
+          <blockquote>“Los estudios que realizamos con Praxis tienen un impacto positivo en nuestra compañía ya que nos permiten hacer presente a los clientes en las principales áreas de la compañía. Nos proporcionan información valiosa sobre sus experiencias y necesidades, facilitando la toma de decisiones y generando un impacto positivo en la satisfacción.”</blockquote>
+          <footer>
+            <span class="tslide__avatar">CM</span>
+            <div><strong>Carol Maldonado</strong><span>Jefa de Experiencia Clientes · GASCO</span></div>
+          </footer>
+        </article>
+      </div>
+      <div class="tslider__nav">
+        <button class="tslider__dot is-active" aria-label="Testimonio 1"></button>
+        <button class="tslider__dot" aria-label="Testimonio 2"></button>
+        <button class="tslider__dot" aria-label="Testimonio 3"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-label="Confían en nosotros">
+    <p class="marquee__label">Confían en nosotros</p>
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>Gtd</span><span>AZA Acero Sostenible</span><span>GASCO</span><span>Gtd</span><span>AZA Acero Sostenible</span><span>GASCO</span>
+      </div>
+      <div class="marquee__group" aria-hidden="true">
+        <span>Gtd</span><span>AZA Acero Sostenible</span><span>GASCO</span><span>Gtd</span><span>AZA Acero Sostenible</span><span>GASCO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta">
+  <div class="container cta__inner reveal">
+    <h2>Es momento de medir la experiencia de tus clientes.</h2>
+    <p>Mejora tu NPS® y haz crecer tu empresa hoy mismo.</p>
+    <a href="#contacto" class="btn btn--lg btn--invert">Comenzar ahora <span class="btn__arrow">→</span></a>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACTO ═══════════ -->
+<section class="contact" id="contacto">
+  <div class="container contact__inner">
+    <div class="contact__copy reveal">
+      <p class="eyebrow">¿Cómo podemos ayudarte?</p>
+      <h2 class="section-title">¡Hablemos!</h2>
+      <p>Déjanos los datos solicitados y nos pondremos en contacto contigo a la brevedad.</p>
+      <ul class="contact__data">
+        <li><strong>Dirección</strong>Flor de Azucena 111, of. 701, Las Condes, Santiago de Chile</li>
+        <li><strong>Teléfono</strong>+56 9 3228 9050</li>
+        <li><strong>Email</strong>info@praxis.cl</li>
+      </ul>
+    </div>
+    <form class="contact__form reveal" data-delay="150" onsubmit="return false;">
+      <div class="field"><label>Nombre *</label><input type="text" placeholder="Tu nombre"></div>
+      <div class="field"><label>Email corporativo *</label><input type="email" placeholder="nombre@empresa.cl"></div>
+      <div class="field field--half">
+        <label>Puesto en la empresa *</label>
+        <select><option>Gerente</option><option>Subgerente</option><option>Jefatura</option><option>Ingeniero/Analista</option><option>Otro</option></select>
+      </div>
+      <div class="field field--half">
+        <label>Nº de trabajadores *</label>
+        <select><option>Menos de 20</option><option>De 20 a 49</option><option>De 50 a 199</option><option>200 o más</option></select>
+      </div>
+      <div class="field"><label>Mensaje</label><textarea rows="4" placeholder="Cuéntanos tu desafío de CX"></textarea></div>
+      <button class="btn btn--lg" type="submit">Enviar mensaje <span class="btn__arrow">→</span></button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="assets/logo-praxis-dark.png" alt="Praxis" height="30" class="js-logo">
+      <p>Medimos y mejoramos la experiencia de tus clientes.</p>
+    </div>
+    <div class="footer__col">
+      <h4>Encuéntranos</h4>
+      <p>Flor de Azucena 111, of. 701<br>Las Condes, Santiago, Chile</p>
+    </div>
+    <div class="footer__col">
+      <h4>Hablemos</h4>
+      <p>+56 9 3228 9050<br>info@praxis.cl</p>
+    </div>
+    <div class="footer__col">
+      <h4>Social Media</h4>
+      <div class="footer__social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="18"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.16h4.52V23H.24V8.16zM8.34 8.16h4.33v2.03h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.42 3.01 5.42 6.93V23h-4.51v-7.34c0-1.75-.03-4-2.44-4-2.44 0-2.82 1.9-2.82 3.87V23H8.34V8.16z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.8" cy="6.2" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" width="20"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>© 2026 Praxis · Propuesta de rediseño — demo interna Hypelab. Página no funcional.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
