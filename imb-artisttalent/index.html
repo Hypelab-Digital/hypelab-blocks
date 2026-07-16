@@ -28,7 +28,7 @@ img{max-width:100%;display:block}
 /* ---------- display type: Barlow SemiCond Bold, 70% horizontal, tracking 75, uppercase ---------- */
 .dsp{font-family:'Barlow Semi Condensed',Arial,sans-serif;font-weight:700;
   text-transform:uppercase;letter-spacing:var(--track);line-height:.92;margin:0}
-.cond{display:inline-block;transform:scaleX(.72);transform-origin:center}
+.cond{display:inline-block;transform:scaleX(.72);transform-origin:center;margin-right:calc(-1*var(--track))}
 .stamp{filter:url(#stamp)}
 
 /* ---------- header ---------- */
@@ -85,7 +85,7 @@ nav a.cta:hover{background:var(--blanco)}
 section{padding:88px 20px}
 .wrap{max-width:980px;margin:0 auto}
 .narrow{max-width:640px;margin:0 auto}
-h2.dsp{color:var(--rosa);font-size:clamp(40px,7vw,84px);text-align:center;margin-bottom:48px;text-wrap:balance}
+h2.dsp{color:var(--rosa);font-size:clamp(40px,7vw,84px);display:flex;justify-content:center;margin-bottom:48px}
 .lead{font-size:clamp(18px,2.2vw,21px)}
 .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
 .about-grid figure{margin:0;border:3px solid var(--rosa);position:relative}
@@ -131,8 +131,11 @@ footer .sep{margin:0 .5em}
   .about-grid{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr;max-width:520px}
   .side{display:none}
-  .hero{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;padding-top:40px}
   nav a{font-size:13px;padding:5px 7px}
+  header{position:static}
+  .nav{height:auto;flex-wrap:wrap;padding:12px 16px;row-gap:4px}
+  nav ul{justify-content:flex-start}
 }
 </style>
 </head>
